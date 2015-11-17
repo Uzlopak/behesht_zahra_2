@@ -37,6 +37,10 @@ for ($id = 1; $id <= 300000; $id++) {
   while (!validateEntry($id))
   {
   	$delay = $delay + $i * 250000;
+  	//limit to 5 secs
+  	if ($delay > 5000000) {
+  		$delay = 5000000;
+  	}
     usleep($delay);
     ripById($id);
     print $i . " ";
