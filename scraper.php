@@ -30,10 +30,10 @@
 <?php
 require 'scraperwiki.php';
 
-for ($id = 1; $id <= 300000; $id++) {
+for ($id = 300001; $id <= 600000; $id++) {
 	$i = 1;
 	$delay = 250000;
-  print $id;
+  print $id . " try: ";
   while (!validateEntry($id))
   {
   	$delay = $delay + $i * 250000;
@@ -46,7 +46,7 @@ for ($id = 1; $id <= 300000; $id++) {
     print $i . " ";
     $i++;
   }
-  print " scraped";
+  print " scraped\n";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
