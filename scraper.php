@@ -33,20 +33,23 @@ require 'scraperwiki.php';
 for ($id = 300001; $id <= 600000; $id++) {
 	$i = 1;
 	$delay = 250000;
-  print $id . " try: ";
-  while (!validateEntry($id))
-  {
-  	$delay = $delay + $i * 250000;
-  	//limit to 5 secs
-  	if ($delay > 5000000) {
-  		$delay = 5000000;
-  	}
-    usleep($delay);
-    ripById($id);
-    print $i . " ";
-    $i++;
+	  if (!validateEntry($id))
+	  {
+	  print $id . " try: ";
+	  while (!validateEntry($id))
+	  {
+	  	$delay = $delay + $i * 250000;
+	  	//limit to 5 secs
+	  	if ($delay > 5000000) {
+	  		$delay = 5000000;
+	  	}
+	    usleep($delay);
+	    ripById($id);
+	    print $i . ". ";
+	    $i++;
+	  }
+	  print " scraped\n";
   }
-  print " scraped\n";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
