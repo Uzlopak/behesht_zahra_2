@@ -31,13 +31,16 @@
 require 'scraperwiki.php';
 
 for ($id = 1; $id <= 300000; $id++) {
-  if (!entryExists($id))
+	$i = 1;
+  print $id;
+  while (!validateEntry($id))
   {
     usleep(500000);
     ripById($id);
-    print $id;
+    print $i . " "
+    $i++;
   }
-  print ",";
+  print " scraped";
 }
 function ripById($id){
 	$pathToDetails = 'http://www.beheshtezahra.ir/Default.aspx?tabid=92&ctl=SearchDetails&mid=653&srid=' . $id;
@@ -85,7 +88,7 @@ function ripById($id){
 	                          'deathplace' => $deathplace, 
 	                          'graveplace' => $graveplace));
 }
-function entryExists($id){
+function validateEntry($id){
 	$result = false;
 	// Set total number of rows
 	try {
