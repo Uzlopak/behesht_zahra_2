@@ -30,14 +30,12 @@
 <?php
 require 'scraperwiki.php';
 
-
-for ($id = 300001; $id <= 600000; $id++) {
-	print $id;
+for ($id = 1; $id <= 300000; $id++) {
   if (!entryExists($id))
   {
     usleep(500000);
     ripById($id);
-    print "scraped";
+    print $id;
   }
   print ",";
 }
