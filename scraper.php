@@ -32,12 +32,14 @@ require 'scraperwiki.php';
 
 for ($id = 1; $id <= 300000; $id++) {
 	$i = 1;
+	$delay = 250000;
   print $id;
   while (!validateEntry($id))
   {
-    usleep(500000);
+  	$delay = $delay + $i * 250000;
+    usleep($delay);
     ripById($id);
-    print $i . " "
+    print $i . " ";
     $i++;
   }
   print " scraped";
