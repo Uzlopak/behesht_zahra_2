@@ -30,13 +30,10 @@
 <?php
 require 'scraperwiki.php';
 
+
 for ($id = 300001; $id <= 600000; $id++) {
 	print $id;
-  if (entryExists($id))
-  {
-    print  " skipped";
-  }
-  else
+  if (!entryExists($id))
   {
   	sleep(1);
     ripById($id);
