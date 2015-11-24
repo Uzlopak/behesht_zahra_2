@@ -1,7 +1,6 @@
 <?
 // This is a template for a PHP scraper on morph.io (https://morph.io)
 // including some code snippets below that you should find helpful
-
 // require 'scraperwiki.php';
 // require 'scraperwiki/simple_html_dom.php';
 //
@@ -18,7 +17,6 @@
 //
 // // An arbitrary query against the database
 // scraperwiki::select("* from data where 'name'='peter'")
-
 // You don't have to do things with the ScraperWiki library.
 // You can use whatever libraries you want: https://morph.io/documentation/php
 // All that matters is that your final data is written to an SQLite database
@@ -29,15 +27,20 @@
 
 <?php
 require 'scraperwiki.php';
-
+$endtime = time() + (60 * 60); //1h 
 for ($id = 300001; $id <= 600000; $id++) {
+	if ($endtime <= time())
+	{
+		exit;
+	}
 	$i = 1;
 	$delay = 250000;
 	  if (!validateEntry($id))
 	  {
-	  print $id . " try: ";
+	  print $id;
 	  while (!validateEntry($id))
 	  {
+	    print ".";
 	  	$delay = $delay + $i * 250000;
 	  	//limit to 5 secs
 	  	if ($delay > 5000000) {
@@ -45,10 +48,9 @@ for ($id = 300001; $id <= 600000; $id++) {
 	  	}
 	    usleep($delay);
 	    ripById($id);
-	    print $i . ". ";
 	    $i++;
 	  }
-	  print " scraped\n";
+	  print "! ";
   }
 }
 function ripById($id){
@@ -103,7 +105,13 @@ function validateEntry($id){
 	try {
 	$recordSet = scraperwiki::select("* from data where id ='". $id . "'");
 	if (!empty($recordSet[0]['id'])) {
-		if ($recordSet[0]['firstname'] != "" and $recordSet[0]['surname'] != ""){
+		if ($recordSet[0]['surname'] != ""){
+			$result = true;	
+		}
+		if ($recordSet[0]['firstname'] != ""){
+			$result = true;	
+		}
+		if ($recordSet[0]['fathername'] != ""){
 			$result = true;	
 		}
 	} 
