@@ -47,6 +47,9 @@ for ($id = 300001; $id <= 600000; $id++) {
 	  		$delay = 5000000;
 	  		exit;
 	  	}
+	  	if ($i == 20){
+	  		exit;
+	  	}
 	    usleep($delay);
 	    ripById($id);
 	    $i++;
