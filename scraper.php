@@ -45,7 +45,6 @@ for ($id = 300001; $id <= 600000; $id++) {
 	  	//limit to 5 secs
 	  	if ($delay > 5000000) {
 	  		$delay = 5000000;
-	  		exit;
 	  	}
 	  	if ($i == 20){
 	  		exit;
