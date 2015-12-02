@@ -27,7 +27,7 @@
 
 <?php
 require 'scraperwiki.php';
-$endtime = time() + (60 * 60) * 6; //1h 
+$endtime = time() + (60 * 60) * 23; //23h 
 for ($id = 300001; $id <= 600000; $id++) {
 	if ($endtime <= time())
 	{
